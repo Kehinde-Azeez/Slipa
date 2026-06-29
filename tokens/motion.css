@@ -1,0 +1,73 @@
+ /* =============================================================================
+   SLIPA — Motion Tokens
+   Motion communicates state — never decoration.
+   All animations are wrapped in prefers-reduced-motion at the bottom.
+   ============================================================================= */
+
+:root {
+  /* Durations */
+  --duration-micro:     150ms;   /* hover, focus, colour transitions     */
+  --duration-entrance:  300ms;   /* element entrances, panel slides      */
+  --duration-celebrate: 400ms;   /* PDF ready — the product's key moment */
+
+  /* Easings */
+  --ease-default:   ease;
+  --ease-out:       cubic-bezier(0, 0, 0.2, 1);
+  --ease-spring:    cubic-bezier(0.34, 1.56, 0.64, 1); /* celebratory entrances only */
+
+  /* Standard interactive transition — apply to all buttons, inputs, links */
+  --transition-base: background-color var(--duration-micro) var(--ease-default),
+                     border-color     var(--duration-micro) var(--ease-default),
+                     opacity          var(--duration-micro) var(--ease-default),
+                     color            var(--duration-micro) var(--ease-default);
+}
+
+/* --------------------------------------------------------------------------
+   Typing indicator — three dots, staggered pulse
+   Usage: apply .typing-dot to each <span>, add style="--i:0", "--i:1", "--i:2"
+   -------------------------------------------------------------------------- */
+@keyframes typing-dot {
+  0%, 60%, 100% { opacity: 0.3; transform: translateY(0);    }
+  30%           { opacity: 1;   transform: translateY(-4px); }
+}
+
+.typing-dot {
+  animation: typing-dot 900ms var(--ease-default) infinite;
+  animation-delay: calc(var(--i) * 150ms);
+}
+
+/* --------------------------------------------------------------------------
+   PDF ready — entrance animation for the download button
+   This is the core value delivery moment. It must feel like a win.
+   Usage: add .pdf-download-btn--ready class when pdf_url becomes available
+   -------------------------------------------------------------------------- */
+@keyframes pdf-ready {
+  0%   { opacity: 0; transform: scale(0.94) translateY(6px); }
+  60%  { transform: scale(1.02) translateY(0);               }
+  100% { opacity: 1; transform: scale(1) translateY(0);      }
+}
+
+@keyframes success-pulse {
+  0%, 100% { box-shadow: 0 0 0 0   rgba(0, 200, 150, 0);    }
+  50%      { box-shadow: 0 0 0 6px rgba(0, 200, 150, 0.15); }
+}
+
+.pdf-download-btn--ready {
+  animation:
+    pdf-ready     var(--duration-celebrate) var(--ease-spring) forwards,
+    success-pulse 1200ms var(--ease-default) 400ms 2;
+}
+
+/* --------------------------------------------------------------------------
+   prefers-reduced-motion — always last, always present
+   WCAG 2.1 §2.3.3 requirement. Never remove this block.
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration:        0.01ms !important;
+    animation-iteration-count: 1      !important;
+    transition-duration:       0.01ms !important;
+  }
+}

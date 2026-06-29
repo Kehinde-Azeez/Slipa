@@ -1,0 +1,20 @@
+ /* =============================================================================
+   SLIPA — Spacing Tokens
+   4px base unit. All values are multiples of 4.
+   Use --space-* for component-internal gaps (px).
+   Use rem values (1rem, 1.5rem, 2rem) for vertical page rhythm.
+   ============================================================================= */
+
+:root {
+  --space-1:   4px;
+  --space-2:   8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-6:  24px;
+  --space-8:  32px;
+  --space-12: 48px;
+  --space-16: 64px;
+
+  /* Touch target minimum — never go below this for interactive elements */
+  --touch-target: 44px;
+}

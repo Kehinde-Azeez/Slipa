@@ -1,0 +1,36 @@
+ /* =============================================================================
+   SLIPA — Typography Tokens
+   Font: Inter (loaded via Google Fonts or bundled).
+   Never use system-ui as a standalone — it breaks PDF rendering.
+   ============================================================================= */
+
+:root {
+  /* Font family */
+  --font-sans:  'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono:  'JetBrains Mono', 'Fira Code', monospace;
+
+  /* Font sizes */
+  --text-xs:    0.75rem;    /* 12px — labels, badges, ALL CAPS metadata */
+  --text-sm:    0.875rem;   /* 14px — timestamps, secondary metadata     */
+  --text-base:  1rem;       /* 16px — chat body, inputs, body copy        */
+  --text-lg:    1.125rem;   /* 18px — section headings                    */
+  --text-xl:    1.5rem;     /* 24px — card titles, confirmation summary   */
+  --text-2xl:   2rem;       /* 32px — invoice totals, display amounts     */
+
+  /* Font weights — two only */
+  --weight-regular: 400;
+  --weight-medium:  500;
+
+  /* Line heights */
+  --leading-tight:  1.2;    /* headings, display amounts */
+  --leading-normal: 1.6;    /* body copy, chat bubbles   */
+
+  /* Letter spacing */
+  --tracking-tight:  -0.5px;   /* --text-2xl display amounts  */
+  --tracking-snug:   -0.3px;   /* --text-xl card titles       */
+  --tracking-normal:  0;        /* --text-base and below       */
+  --tracking-wide:    0.04em;  /* --text-xs labels, ALL CAPS  */
+
+  /* Tabular numerals — apply to ALL monetary values and numeric columns */
+  --font-numeric: 'tnum' 1, 'ss01' 1;
+}

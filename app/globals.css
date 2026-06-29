@@ -1,0 +1,32 @@
+@import '../tokens/index.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Inter font — loaded from Google Fonts in layout.tsx */
+
+/* Reduced motion — wrap all animations */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/*
+ * Global focus-visible baseline.
+ * Ensures any interactive element not explicitly styled with focus-visible
+ * still shows a keyboard-accessible indicator.
+ * Design-token: outline uses brand-ink so it's readable in both light/dark modes.
+ */
+:focus-visible {
+  outline: 2px solid var(--color-border-strong);
+  outline-offset: 2px;
+}

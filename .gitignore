@@ -1,0 +1,38 @@
+# Dependencies
+node_modules/
+
+# Next.js build output
+.next/
+out/
+
+# Environment variables — NEVER commit these
+.env.local
+.env.*.local
+
+# Generated PDFs — local dev only
+public/pdfs/*.pdf
+
+# TypeScript build cache
+tsconfig.tsbuildinfo
+*.tsbuildinfo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Local dev/test scripts — never commit (may contain credentials)
+test-db.js
+test-ai.ts
+
+# AI development assets (keep private)
+.agents/
+skills/
+workflows/
+
+AGENTS.md

@@ -1,0 +1,10 @@
+ /* =============================================================================
+   SLIPA — Border Radius Tokens
+   ============================================================================= */
+
+:root {
+  --radius-sm:   4px;      /* subtle rounding — table cells, small badges */
+  --radius-md:   8px;      /* inputs, inline badges, small buttons         */
+  --radius-lg:  12px;      /* cards, modals, notification banners          */
+  --radius-full: 9999px;   /* pill buttons, tags, avatar circles           */
+}

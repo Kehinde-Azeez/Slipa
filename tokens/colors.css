@@ -1,0 +1,75 @@
+ /* =============================================================================
+   SLIPA — Color Tokens
+   Source of truth for all colour values in the application.
+   Do not hardcode hex values in components. Always reference these variables.
+   ============================================================================= */
+
+:root {
+  /* Brand */
+  --color-brand-ink:         #0D0D1A;
+  --color-brand-green:       #00C896;
+  --color-brand-green-dark:  #00A87D;
+  --color-brand-green-tint:  #E6FBF5;
+
+  /* Surface */
+  --color-surface:           #FFFFFF;
+  --color-surface-alt:       #F7F8FA;
+  --color-surface-muted:     #F0F1F4;
+
+  /* Text */
+  --color-text-primary:      #0D0D1A;
+  --color-text-secondary:    #4B5264;
+  --color-text-muted:        #9299A8;
+
+  /* Border */
+  --color-border:            #E2E4E9;
+  --color-border-strong:     #C8CBD3;
+
+  /* Semantic — foreground */
+  --color-error:             #DC2626;
+  --color-warning:           #F59E0B;
+  --color-info:              #1D6CF2;
+  --color-success:           #00C896;
+
+  /* Semantic — background */
+  --color-error-bg:          #FEF2F2;
+  --color-warning-bg:        #FFFBEB;
+  --color-info-bg:           #EFF6FF;
+  --color-success-bg:        #E6FBF5;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Brand */
+    --color-brand-ink:         #FFFFFF;
+    --color-brand-green:       #00C896;
+    --color-brand-green-dark:  #00E8B0;
+    --color-brand-green-tint:  #003D2E;
+
+    /* Surface */
+    --color-surface:           #0D0D1A;
+    --color-surface-alt:       #141420;
+    --color-surface-muted:     #1C1C2A;
+
+    /* Text */
+    --color-text-primary:      #F5F5F7;
+    --color-text-secondary:    #9299A8;
+    --color-text-muted:        #5C6070;
+
+    /* Border */
+    --color-border:            #252535;
+    --color-border-strong:     #3A3A50;
+
+    /* Semantic — foreground */
+    --color-error:             #F87171;
+    --color-warning:           #FBBF24;
+    --color-info:              #60A5FA;
+    --color-success:           #00C896;
+
+    /* Semantic — background */
+    --color-error-bg:          #2D1515;
+    --color-warning-bg:        #2D2000;
+    --color-info-bg:           #0F1E3D;
+    --color-success-bg:        #003D2E;
+  }
+}

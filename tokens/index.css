@@ -1,0 +1,49 @@
+ /* =============================================================================
+   SLIPA — Design Token Entry Point
+   Import this single file in your app root (e.g. app/layout.tsx or globals.css).
+   All token files are imported here in dependency order.
+   ============================================================================= */
+
+@import './colors.css';
+@import './typography.css';
+@import './spacing.css';
+@import './radius.css';
+@import './motion.css';
+
+/* --------------------------------------------------------------------------
+   Base global styles — applied once here, never repeated in components
+   -------------------------------------------------------------------------- */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  font-weight: var(--weight-regular);
+  line-height: var(--leading-normal);
+  color: var(--color-text-primary);
+  background-color: var(--color-surface-alt);
+}
+
+/* Monetary values and numeric columns — tabular numerals */
+.numeric {
+  font-feature-settings: var(--font-numeric);
+}
+
+/* Focus ring — accessible, consistent across all interactive elements */
+:focus-visible {
+  outline: 2px solid var(--color-brand-green);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
