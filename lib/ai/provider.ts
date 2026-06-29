@@ -1,6 +1,9 @@
 import { mockEngine } from './mock-engine'
 import { getSession } from './session'
 
+export const AI_PROVIDER =
+  process.env.GEMINI_API_KEY ? 'gemini' : 'mock'
+
 export async function generateAIResponse(
   prompt: string,
   freelancerId?: string

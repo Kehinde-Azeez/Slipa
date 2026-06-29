@@ -15,6 +15,7 @@
 
 import { NextResponse } from 'next/server'
 import { query } from '@/lib/db'
+import { AI_PROVIDER } from '@/lib/ai/provider'
 
 export async function GET() {
   const checks: Record<string, { ok: boolean; detail?: string }> = {}
@@ -38,6 +39,10 @@ export async function GET() {
       process.env.BANK_ENCRYPTION_KEY
         ? '✓ BANK_ENCRYPTION_KEY'
         : '✗ BANK_ENCRYPTION_KEY missing',
+
+      AI_PROVIDER === 'gemini'
+        ? '✓ AI Provider: Gemini'
+        : '✓ AI Provider: Mock',
     ].join(' | '),
   }
 
