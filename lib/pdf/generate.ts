@@ -10,7 +10,8 @@
  * The pdf_url stored in DB is a relative path served by Next.js.
  */
 
-import puppeteer from 'puppeteer'
+import puppeteer from 'puppeteer-core'
+import chromium from '@sparticuz/chromium'
 import { writeFile, mkdir } from 'fs/promises'
 import { join } from 'path'
 import { query } from '@/lib/db'
@@ -116,10 +117,19 @@ export async function generateAndStorePdf(
 }
 
 async function generatePdfBuffer(html: string): Promise<Buffer> {
-  const browser = await puppeteer.launch({
-    args: ['--no-sandbox', '--disable-setuid-sandbox'],
-    headless: true,
-  })
+ const isVercel = !!process.env.VERCEL
+
+const browser = await puppeteer.launch({
+  args: isVercel
+    ? chromium.args
+    : ['--no-sandbox', '--disable-setuid-sandbox'],
+
+  executablePath: isVercel
+    ? await chromium.executablePath()
+    : undefined,
+
+  headless: true,
+})
 
   try {
     const page = await browser.newPage()
