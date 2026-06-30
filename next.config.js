@@ -4,7 +4,12 @@ const nextConfig = {
   // Puppeteer and pg must run server-side only — not bundled for client or edge
   // NOTE: Next.js 15 renames this to `serverExternalPackages`
   experimental: {
-    serverComponentsExternalPackages: ['puppeteer', 'pg', 'bcryptjs'],
+    serverComponentsExternalPackages: [
+      'puppeteer-core',
+      '@sparticuz/chromium',
+      'pg',
+      'bcryptjs',
+    ],
   },
 }
 
