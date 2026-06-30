@@ -69,13 +69,53 @@ export function mockEngine(prompt: string, session?: SessionState) {
   }
 
   if (draft.currency === undefined) {
-    return {
-      type: 'collect_field',
-      field: 'currency',
-      value: userMessage.toUpperCase(),
-      nextQuestion: 'Has any payment already been received?',
-    }
+  const input = userMessage.trim().toLowerCase()
+
+  let currency = ''
+
+  switch (input) {
+    case 'ngn':
+    case 'naira':
+    case '₦':
+      currency = 'NGN'
+      break
+
+    case 'usd':
+    case 'dollar':
+    case 'dollars':
+    case '$':
+      currency = 'USD'
+      break
+
+    case 'gbp':
+    case 'pound':
+    case 'pounds':
+    case '£':
+      currency = 'GBP'
+      break
+
+    case 'eur':
+    case 'euro':
+    case 'euros':
+    case '€':
+      currency = 'EUR'
+      break
+
+    default:
+      return {
+        type: 'clarify',
+        question:
+          'Please enter one of these currencies: NGN, USD, GBP or EUR.',
+      }
   }
+
+  return {
+    type: 'collect_field',
+    field: 'currency',
+    value: currency,
+    nextQuestion: 'Has any payment already been received?',
+  }
+}
 
   if (safeSession.awaitingConfirmation) {
     if (userMessage.toLowerCase().includes('yes') || userMessage.toLowerCase().includes('confirm') || userMessage.toLowerCase().includes('good')) {
