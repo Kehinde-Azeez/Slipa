@@ -10,7 +10,8 @@
  * The pdf_url stored in DB is a relative path served by Next.js.
  */
 
-import { generatePdfBuffer } from './pdfshift'
+import puppeteer from 'puppeteer-core'
+import chromium from '@sparticuz/chromium'
 import { writeFile, mkdir } from 'fs/promises'
 import { join } from 'path'
 import { query } from '@/lib/db'
@@ -115,7 +116,48 @@ export async function generateAndStorePdf(
   )
 }
 
+async function generatePdfBuffer(html: string): Promise<Buffer> {
+ const isVercel = !!process.env.VERCEL
 
+const browser = await puppeteer.launch({
+  args: isVercel
+    ? chromium.args
+    : ['--no-sandbox', '--disable-setuid-sandbox'],
+
+  executablePath: isVercel
+    ? await chromium.executablePath()
+    : undefined,
+
+  headless: true,
+})
+
+  try {
+    const page = await browser.newPage()
+
+    // Set timeout for PDF generation
+    page.setDefaultTimeout(PDF_GENERATION_TIMEOUT_MS)
+
+    await page.setContent(html, { waitUntil: 'domcontentloaded' })
+
+    const pdf = await page.pdf({
+      format: 'A4',
+      printBackground: true,
+      margin: {
+        top: '40px',
+        right: '40px',
+        bottom: '40px',
+        left: '40px',
+      },
+    })
+
+    return Buffer.from(pdf)
+  } catch (err) {
+    console.error('[PDF] puppeteer error:', err)
+    throw err
+  } finally {
+    await browser.close()
+  }
+}
 
 /**
  * storePdf — saves the PDF buffer to local filesystem (v1.0 dev storage).

@@ -77,12 +77,11 @@ export function handleApiError(err: unknown): NextResponse {
   }
 
   // Unknown error — log correlation ID in production, full detail in development
-  const isDev = process.env.NODE_ENV === 'development'
-  if (isDev) {
-    console.error(`[api] Unhandled error. correlationId=${correlationId}`, err)
-  } else {
-    console.error(`[api] Unhandled error. correlationId=${correlationId}`)
-  }
+  // Unknown error
+console.error(
+  `[api] Unhandled error. correlationId=${correlationId}`,
+  err
+)
   return NextResponse.json(
     { error: 'Something went wrong. Please try again.' },
     { status: 500 }
