@@ -10,8 +10,12 @@ export async function generatePdfBuffer(
   html: string
 ): Promise<Buffer> {
   const apiKey = process.env.PDFSHIFT_API_KEY
-
-console.log("PDFSHIFT KEY LENGTH:", apiKey?.length)
+  console.log(
+    '[PDFShift] API key configured:',
+    Boolean(apiKey),
+    'length:',
+    apiKey?.length ?? 0
+  )
   if (!apiKey) {
     throw new Error("PDFSHIFT_API_KEY is missing.")
   }
