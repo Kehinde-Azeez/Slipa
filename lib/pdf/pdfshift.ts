@@ -11,6 +11,7 @@ export async function generatePdfBuffer(
 ): Promise<Buffer> {
   const apiKey = process.env.PDFSHIFT_API_KEY
 
+console.log("PDFSHIFT KEY LENGTH:", apiKey?.length)
   if (!apiKey) {
     throw new Error("PDFSHIFT_API_KEY is missing.")
   }
